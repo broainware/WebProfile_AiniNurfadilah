@@ -48,14 +48,22 @@ section {
 .logo span { color: #c43b3b; }
 
 /* HERO SECTION */
+
 .hero-content {
     display: flex; align-items: center; justify-content: space-between; gap: 40px;
     padding-top: 50px;
+}
+.hero-text, .about-box {
+    will-change: transform;
 }
 
 .hero-text h1 { font-size: 4rem; line-height: 1; margin-bottom: 20px; }
 .hero-text h1 span { color: #c43b3b; }
 .hero-text p { max-width: 500px; margin-bottom: 30px; opacity: 0.8; }
+.about-box p {
+    display: block;
+    transition: transform 0.1s ease-out; /* Biar gerakannya smooth mengikuti mouse */
+}
 
 .btn-main {
     padding: 12px 35px; background: #c43b3b; color: white;
@@ -192,9 +200,30 @@ section {
 }
 
 /* ANIMATION */
-.reveal { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+.reveal { opacity: 0; transform: translateY(40px); transition: 0.8s all ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
+/* State awal teks About (geser ke kiri) */
+.about.reveal .about-box {
+    opacity: 0;
+    transform: translateX(-100px); 
+    transition: 1s all ease;
+}
+
+/* State awal foto About (geser ke kanan) */
+.about.reveal .about-img {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: 1s all ease;
+}
+
+/* KETIKA SUDAH AKTIF (SAAT DIGULIR) */
+/* Paksa keduanya balik ke posisi asli dan jadi kelihatan */
+.about.reveal.active .about-box,
+.about.reveal.active .about-img {
+    opacity: 1;
+    transform: translateX(0);
+}
 /* CUSTOM CURSOR */
 .cursor-dot, .cursor-outline {
     pointer-events: none;

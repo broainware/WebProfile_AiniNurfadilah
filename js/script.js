@@ -13,28 +13,41 @@ card.addEventListener("mouseleave", () => {
 });
 
 // SCROLL REVEAL
+// GANTI bagian SCROLL REVEAL kamu dengan ini:
 const reveals = document.querySelectorAll('.reveal');
-window.addEventListener('scroll', () => {
+
+function revealOnScroll() {
     reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 150; // Jarak muncul (makin kecil makin cepet muncul)
+
+        if (elementTop < windowHeight - revealPoint) {
             el.classList.add('active');
         }
     });
-});
+}
 
-// PROJECT SLIDER LOGIC
-const track = document.querySelector('.project-track');
-const nextBtn = document.querySelector('.next');
-const prevBtn = document.querySelector('.prev');
-let index = 0;
+// Jalankan fungsi setiap kali layar di-scroll
+window.addEventListener('scroll', revealOnScroll);
 
-nextBtn.addEventListener('click', () => {
-    if (index < 1) { 
-        index++;
-        updateSlider();
-    }
-});
+function revealOnScroll() {
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementBottom = el.getBoundingClientRect().bottom;
+        const revealPoint = 150; 
+
+        // KONDISI 1: Elemen masuk ke area layar (Muncul)
+        if (elementTop < windowHeight - revealPoint && elementBottom > 0) {
+            el.classList.add('active');
+        } 
+        // KONDISI 2: Elemen keluar dari area layar (Hilang lagi)
+        else {
+            el.classList.remove('active');
+        }
+    });
+}
 
 prevBtn.addEventListener('click', () => {
     if (index > 0) {
@@ -91,4 +104,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const content = text.innerHTML;
         text.innerHTML = `<span class="reveal-text">${content}</span>`;
     });
+});
+
+// ANIMASI TEKS SENSITIF KURSOR (HERO & ABOUT)
+document.addEventListener("mousemove", (e) => {
+    const x = (window.innerWidth / 2 - e.clientX) / 50; // Angka 50 = tingkat sensitivitas
+    const y = (window.innerHeight / 2 - e.clientY) / 50;
+
+    // Gerakkan Judul Hero & Deskripsi (Arah berlawanan biar efek depth)
+    const heroTitle = document.querySelector(".hero-text h1");
+    const heroDesc = document.querySelector(".hero-text p");
+    
+    if(heroTitle) heroTitle.style.transform = `translate(${x}px, ${y}px)`;
+    if(heroDesc) heroDesc.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+
+    // Gerakkan Teks di About (Efeknya lebih tipis biar elegan)
+    const aboutTitle = document.querySelector(".about-box h2");
+    const aboutDesc = document.querySelector(".about-box p");
+    
+    if(aboutTitle) aboutTitle.style.transform = `translate(${x * -0.3}px, ${y * -0.3}px)`;
+    if(aboutDesc) aboutDesc.style.transform = `translate(${x * -0.2}px, ${y * -0.2}px)`;
 });
