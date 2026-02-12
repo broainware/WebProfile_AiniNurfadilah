@@ -48,7 +48,6 @@ function updateSlider() {
     track.style.transform = `translateX(-${index * width}px)`;
 }
 
-// CUSTOM CURSOR LOGIC
 const cursorDot = document.querySelector(".cursor-dot");
 const cursorOutline = document.querySelector(".cursor-outline");
 
@@ -56,28 +55,32 @@ window.addEventListener("mousemove", (e) => {
     const posX = e.clientX;
     const posY = e.clientY;
 
+    // Dot langsung mengikuti kursor (instan)
     cursorDot.style.left = `${posX}px`;
     cursorDot.style.top = `${posY}px`;
 
-    // Outline sedikit lambat untuk efek trailing
+    // Outline mengikuti dengan efek halus (GSAP style tanpa library)
     cursorOutline.animate({
         left: `${posX}px`,
         top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
+    }, { duration: 250, fill: "forwards" });
 });
 
-// Efek kursor membesar saat hover link/button
-const interactables = document.querySelectorAll("a, button, .skill-box, .project-card");
+// Perbaikan Hover: Agar saat membesar tetap center
+const interactables = document.querySelectorAll("a, button, .skill-box, .project-card, .slide-btn");
 interactables.forEach(el => {
     el.addEventListener("mouseenter", () => {
-        cursorOutline.style.width = "60px";
-        cursorOutline.style.height = "60px";
-        cursorOutline.style.backgroundColor = "rgba(196, 59, 59, 0.1)";
+        cursorOutline.style.width = "70px";
+        cursorOutline.style.height = "70px";
+        cursorOutline.style.margin = "0"; // Memastikan tidak ada offset tambahan
+        cursorOutline.style.backgroundColor = "rgba(196, 59, 59, 0.15)";
+        cursorDot.style.transform = "translate(-50%, -50%) scale(0.5)"; // Dot mengecil biar elegan
     });
     el.addEventListener("mouseleave", () => {
         cursorOutline.style.width = "30px";
         cursorOutline.style.height = "30px";
         cursorOutline.style.backgroundColor = "transparent";
+        cursorDot.style.transform = "translate(-50%, -50%) scale(1)";
     });
 });
 
