@@ -121,3 +121,62 @@ section {
 /* ANIMATION */
 .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s; }
 .reveal.active { opacity: 1; transform: translateY(0); }
+
+/* CUSTOM CURSOR */
+.cursor-dot, .cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+}
+.cursor-dot { width: 8px; height: 8px; background-color: #c43b3b; }
+.cursor-outline {
+    width: 30px; height: 30px;
+    border: 2px solid #c43b3b;
+    transition: all 0.2s ease-out;
+}
+
+/* HOVER ANIMATION UNTUK SEMUA ELEMEN INTERAKTIF */
+a, button, .project-card, .skill-box, .slide-btn {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+a:hover, button:hover, .skill-box:hover {
+    transform: scale(1.1);
+}
+
+/* SKILL BOX DESIGN */
+.skills-grid {
+    display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+}
+.skill-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(196, 59, 59, 0.3);
+    padding: 30px; border-radius: 20px;
+    width: 150px; text-align: center;
+    display: flex; flex-direction: column; gap: 15px;
+}
+.skill-box i { font-size: 40px; color: #c43b3b; }
+
+/* CONTACT CENTERED */
+.contact {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+}
+.contact h2 { margin-bottom: 30px; font-size: 2.5rem; }
+
+/* TEXT ENTRANCE ANIMATION */
+.hero-text h1, .hero-text p, .about-box h2, .about-box p {
+    overflow: hidden;
+}
+.reveal-text {
+    display: inline-block;
+    animation: textUp 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    transform: translateY(100%);
+}
+@keyframes textUp {
+    to { transform: translateY(0); }
+}

@@ -47,3 +47,45 @@ function updateSlider() {
     const width = document.querySelector('.slider-container').offsetWidth + 20;
     track.style.transform = `translateX(-${index * width}px)`;
 }
+
+// CUSTOM CURSOR LOGIC
+const cursorDot = document.querySelector(".cursor-dot");
+const cursorOutline = document.querySelector(".cursor-outline");
+
+window.addEventListener("mousemove", (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    // Outline sedikit lambat untuk efek trailing
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// Efek kursor membesar saat hover link/button
+const interactables = document.querySelectorAll("a, button, .skill-box, .project-card");
+interactables.forEach(el => {
+    el.addEventListener("mouseenter", () => {
+        cursorOutline.style.width = "60px";
+        cursorOutline.style.height = "60px";
+        cursorOutline.style.backgroundColor = "rgba(196, 59, 59, 0.1)";
+    });
+    el.addEventListener("mouseleave", () => {
+        cursorOutline.style.width = "30px";
+        cursorOutline.style.height = "30px";
+        cursorOutline.style.backgroundColor = "transparent";
+    });
+});
+
+// ANIMASI TEKS MUNCUL (TEXT SPLIT)
+document.addEventListener("DOMContentLoaded", () => {
+    const texts = document.querySelectorAll(".hero-text h1, .hero-text p");
+    texts.forEach(text => {
+        const content = text.innerHTML;
+        text.innerHTML = `<span class="reveal-text">${content}</span>`;
+    });
+});
