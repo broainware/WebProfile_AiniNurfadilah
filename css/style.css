@@ -18,7 +18,7 @@ section {
     padding: 100px 8%;
 }
 
-/* NAVBAR BUBBLE */
+/* NAVBAR*/
 .navbar-container {
     position: fixed;
     top: 20px; width: 100%;
@@ -203,22 +203,21 @@ section {
 .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s all ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* State awal teks About (geser ke kiri) */
+
 .about.reveal .about-box {
     opacity: 0;
     transform: translateX(-100px); 
     transition: 1s all ease;
 }
 
-/* State awal foto About (geser ke kanan) */
+
 .about.reveal .about-img {
     opacity: 0;
     transform: translateX(100px);
     transition: 1s all ease;
 }
 
-/* KETIKA SUDAH AKTIF (SAAT DIGULIR) */
-/* Paksa keduanya balik ke posisi asli dan jadi kelihatan */
+
 .about.reveal.active .about-box,
 .about.reveal.active .about-img {
     opacity: 1;
@@ -241,7 +240,7 @@ section {
     transition: all 0.2s ease-out;
 }
 
-/* HOVER ANIMATION UNTUK SEMUA ELEMEN INTERAKTIF */
+/* HOVER ANIMATION */
 a, button, .project-card, .skill-box, .slide-btn {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -249,6 +248,38 @@ a:hover, button:hover, .skill-box:hover {
     transform: scale(1.1);
 }
 
+
+.section-title {
+    text-align: center;      
+    font-size: 3.5rem;       
+    font-weight: 800;        
+    margin-bottom: 60px;     
+    color: #f5e6d3;         
+    letter-spacing: 2px;     
+    position: relative;
+    width: 100%;             
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 5px;
+    background: #c43b3b;     
+    margin: 15px auto 0;     
+    border-radius: 10px;
+}
+
+
+#skills .section-title {
+    margin-top: 20px;
+}
+
+.contact h2 {
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
 /* SKILL BOX DESIGN */
 .skills-grid {
     display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
@@ -270,7 +301,7 @@ a:hover, button:hover, .skill-box:hover {
 }
 .contact h2 { margin-bottom: 30px; font-size: 2.5rem; }
 
-/* PERBESAR IKON KONTAK */
+
 .socials a {
     font-size: 45px; 
     margin: 0 25px;

@@ -13,41 +13,28 @@ card.addEventListener("mouseleave", () => {
 });
 
 // SCROLL REVEAL
-// GANTI bagian SCROLL REVEAL kamu dengan ini:
 const reveals = document.querySelectorAll('.reveal');
-
-function revealOnScroll() {
+window.addEventListener('scroll', () => {
     reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const revealPoint = 150; // Jarak muncul (makin kecil makin cepet muncul)
-
-        if (elementTop < windowHeight - revealPoint) {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
             el.classList.add('active');
         }
     });
-}
+});
 
-// Jalankan fungsi setiap kali layar di-scroll
-window.addEventListener('scroll', revealOnScroll);
+// PROJECT SLIDER LOGIC
+const track = document.querySelector('.project-track');
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+let index = 0;
 
-function revealOnScroll() {
-    reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const elementBottom = el.getBoundingClientRect().bottom;
-        const revealPoint = 150; 
-
-        // KONDISI 1: Elemen masuk ke area layar (Muncul)
-        if (elementTop < windowHeight - revealPoint && elementBottom > 0) {
-            el.classList.add('active');
-        } 
-        // KONDISI 2: Elemen keluar dari area layar (Hilang lagi)
-        else {
-            el.classList.remove('active');
-        }
-    });
-}
+nextBtn.addEventListener('click', () => {
+    if (index < 1) { 
+        index++;
+        updateSlider();
+    }
+});
 
 prevBtn.addEventListener('click', () => {
     if (index > 0) {
@@ -79,15 +66,15 @@ window.addEventListener("mousemove", (e) => {
     }, { duration: 250, fill: "forwards" });
 });
 
-// Perbaikan Hover: Agar saat membesar tetap center
+
 const interactables = document.querySelectorAll("a, button, .skill-box, .project-card, .slide-btn");
 interactables.forEach(el => {
     el.addEventListener("mouseenter", () => {
         cursorOutline.style.width = "70px";
         cursorOutline.style.height = "70px";
-        cursorOutline.style.margin = "0"; // Memastikan tidak ada offset tambahan
+        cursorOutline.style.margin = "0"; 
         cursorOutline.style.backgroundColor = "rgba(196, 59, 59, 0.15)";
-        cursorDot.style.transform = "translate(-50%, -50%) scale(0.5)"; // Dot mengecil biar elegan
+        cursorDot.style.transform = "translate(-50%, -50%) scale(0.5)"; 
     });
     el.addEventListener("mouseleave", () => {
         cursorOutline.style.width = "30px";
@@ -97,7 +84,7 @@ interactables.forEach(el => {
     });
 });
 
-// ANIMASI TEKS MUNCUL (TEXT SPLIT)
+// ANIMASI TEXT SPLIT
 document.addEventListener("DOMContentLoaded", () => {
     const texts = document.querySelectorAll(".hero-text h1, .hero-text p");
     texts.forEach(text => {
@@ -106,22 +93,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// ANIMASI TEKS SENSITIF KURSOR (HERO & ABOUT)
-document.addEventListener("mousemove", (e) => {
-    const x = (window.innerWidth / 2 - e.clientX) / 50; // Angka 50 = tingkat sensitivitas
-    const y = (window.innerHeight / 2 - e.clientY) / 50;
+const heroText = document.getElementById("heroText");
 
-    // Gerakkan Judul Hero & Deskripsi (Arah berlawanan biar efek depth)
-    const heroTitle = document.querySelector(".hero-text h1");
-    const heroDesc = document.querySelector(".hero-text p");
-    
-    if(heroTitle) heroTitle.style.transform = `translate(${x}px, ${y}px)`;
-    if(heroDesc) heroDesc.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+window.addEventListener("mousemove", (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
 
-    // Gerakkan Teks di About (Efeknya lebih tipis biar elegan)
-    const aboutTitle = document.querySelector(".about-box h2");
-    const aboutDesc = document.querySelector(".about-box p");
-    
-    if(aboutTitle) aboutTitle.style.transform = `translate(${x * -0.3}px, ${y * -0.3}px)`;
-    if(aboutDesc) aboutDesc.style.transform = `translate(${x * -0.2}px, ${y * -0.2}px)`;
+    const rect = heroText.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+
+    const moveY = (y - centerY) / 50;
+
+    heroText.style.transform = `translate(${moveX}px, ${moveY}px) rotateX(${-moveY/2}deg) rotateY(${moveX/2}deg)`;
+});
+
+
+window.addEventListener("mouseleave", () => {
+    heroText.style.transform = `translate(0, 0) rotateX(0) rotateY(0)`;
 });
