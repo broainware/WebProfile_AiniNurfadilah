@@ -201,7 +201,24 @@ section {
 
 /* ANIMATION */
 .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s all ease; }
-.reveal.active { opacity: 1; transform: translateY(0); }
+/* Variasi arah muncul */
+.reveal.fade-bottom { transform: translateY(50px); }
+.reveal.fade-left { transform: translateX(-50px); }
+.reveal.fade-right { transform: translateX(50px); }
+.reveal.zoom-in { transform: scale(0.9); }
+
+/* Saat aktif, semuanya kembali ke posisi semula */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+    transition: all 1.2s cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+
+/* Delay agar elemen muncul bergantian (seperti kartu skill) */
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+
 
 
 .about.reveal .about-box {

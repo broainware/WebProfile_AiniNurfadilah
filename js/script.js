@@ -14,14 +14,23 @@ card.addEventListener("mouseleave", () => {
 
 // SCROLL REVEAL
 const reveals = document.querySelectorAll('.reveal');
-window.addEventListener('scroll', () => {
+
+function revealOnScroll() {
     reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 150; // Jarak muncul sebelum elemen benar-benar terlihat
+
+        if (elementTop < windowHeight - elementVisible) {
             el.classList.add('active');
+        } else {
+            // Hapus baris di bawah ini kalau kamu mau animasi cuma sekali pas scroll pertama
+            el.classList.remove('active'); 
         }
     });
-});
+}
+
+window.addEventListener('scroll', revealOnScroll);
 
 // PROJECT SLIDER LOGIC
 const track = document.querySelector('.project-track');
