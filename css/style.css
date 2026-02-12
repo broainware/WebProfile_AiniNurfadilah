@@ -77,8 +77,32 @@ section {
 }
 
 .card-title {
-    position: absolute; bottom: 30px; width: 100%; text-align: center;
-    color: white; transform: translateZ(20px);
+    position: absolute;
+    bottom: 30px;
+    left: 50%; 
+    transform: translateX(-50%) translateZ(40px); 
+    
+    /* Glassmorphism Style */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    padding: 10px 25px;
+    border-radius: 50px; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    white-space: nowrap; 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+}
+
+.card-3d:hover .card-title {
+    transform: translateX(-50%) translateZ(70px);
+    background: rgba(196, 59, 59, 0.4); 
+    border-color: rgba(196, 59, 59, 0.6);
 }
 
 .card-3d:hover .card-character { transform: translateX(-50%) translateZ(80px); }
@@ -113,7 +137,7 @@ section {
     height: 250px;
     background: #1a0000;
     border-radius: 20px;
-    overflow: hidden; /* Supaya gambar tidak keluar dari border radius */
+    overflow: hidden; 
     border: 1px solid rgba(196, 59, 59, 0.2);
 }
 
@@ -126,7 +150,7 @@ section {
 
 .project-info {
     position: absolute;
-    bottom: -100%; /* Sembunyi di bawah */
+    bottom: -100%; 
     left: 0;
     width: 100%;
     height: 100%;
@@ -140,7 +164,7 @@ section {
 }
 
 .project-card:hover .project-info {
-    bottom: 0; /* Muncul ke atas saat hover */
+    bottom: 0; 
 }
 
 .project-card:hover .project-thumb {
@@ -219,7 +243,7 @@ a:hover, button:hover, .skill-box:hover {
 
 /* PERBESAR IKON KONTAK */
 .socials a {
-    font-size: 45px; /* Sebelumnya 30px - 35px */
+    font-size: 45px; 
     margin: 0 25px;
     color: #f5e6d3;
     transition: 0.3s;
