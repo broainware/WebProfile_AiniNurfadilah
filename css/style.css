@@ -13,14 +13,14 @@ body {
 
 /* GRADIENT BACKGROUND */
 section {
-    background: radial-gradient(circle at center, #7b0000 0%, #0b0b0b 100%);
+    background: radial-gradient(circle at center, #7b0000ad 0%, #0b0b0b 100%);
     min-height: 100vh;
     padding: 100px 8%;
 }
 
 /* NAVBAR*/
 .navbar-container {
-    position: fixed;
+    position: absolute;
     top: 20px; width: 100%;
     display: flex; justify-content: center;
     z-index: 1000;
@@ -63,7 +63,7 @@ section {
 }
 
 .hero-text h1 { font-size: 4rem; line-height: 1; margin-bottom: 20px; }
-.hero-text h1 span { color: #c43b3b; }
+.hero-text h1 span { color: #ffe6a7; }
 .hero-text p { max-width: 500px; margin-bottom: 30px; opacity: 0.8; }
 .about-box p {
     display: block;
@@ -276,7 +276,7 @@ a:hover, button:hover, .skill-box:hover {
     font-size: 3.5rem;       
     font-weight: 800;        
     margin-bottom: 60px;     
-    color: #f5e6d3;         
+    color: #ffe6a7;         
     letter-spacing: 2px;     
     position: relative;
     width: 100%;             
@@ -313,7 +313,7 @@ a:hover, button:hover, .skill-box:hover {
     width: 150px; text-align: center;
     display: flex; flex-direction: column; gap: 15px;
 }
-.skill-box i { font-size: 40px; color: #c43b3b; }
+.skill-box i { font-size: 40px; color: #ffe6a7; }
 
 /* CONTACT CENTERED */
 .contact {
