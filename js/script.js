@@ -118,7 +118,27 @@ window.addEventListener("mousemove", (e) => {
     heroText.style.transform = `translate(${moveX}px, ${moveY}px) rotateX(${-moveY/2}deg) rotateY(${moveX/2}deg)`;
 });
 
+// Cari semua container kubus
+const allCubes = document.querySelectorAll(".cube");
+
+allCubes.forEach((cube, index) => {
+    // Tambahkan sedikit variasi kecepatan gerak berdasarkan index
+    const sensivitas = (index + 1) * 15; 
+    const xPos = (window.innerWidth / 2 - e.clientX) / sensivitas;
+    const yPos = (window.innerHeight / 2 - e.clientY) / sensivitas;
+    
+    cube.style.transform = `rotateX(${yPos}deg) rotateY(${xPos}deg)`;
+});
 
 window.addEventListener("mouseleave", () => {
     heroText.style.transform = `translate(0, 0) rotateX(0) rotateY(0)`;
 });
+// Tambahkan ini di dalam mousemove listener kamu
+const cube = document.querySelector(".cube");
+if (cube) {
+    const xPos = (window.innerWidth / 2 - e.clientX) / 20;
+    const yPos = (window.innerHeight / 2 - e.clientY) / 20;
+    
+    // Gabungkan rotasi otomatis dengan pergerakan mouse
+    cube.style.transform = `rotateX(${yPos}deg) rotateY(${xPos}deg)`;
+}

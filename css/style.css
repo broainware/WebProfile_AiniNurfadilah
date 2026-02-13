@@ -49,9 +49,13 @@ section {
 
 /* HERO SECTION */
 
+
 .hero-content {
     display: flex; align-items: center; justify-content: space-between; gap: 40px;
     padding-top: 50px;
+    position: relative;
+    z-index: 2; /* LEBIH TINGGI DARI KUBUS */
+    width: 100%;
 }
 .hero-text, .about-box {
     will-change: transform;
@@ -342,3 +346,73 @@ a:hover, button:hover, .skill-box:hover {
 @keyframes textUp {
     to { transform: translateY(0); }
 }
+
+/* Container untuk ruang 3D */
+.css-3d-container {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    perspective: 1000px;
+    z-index: 1;
+}
+
+/* Logika Kubus */
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(196, 59, 59, 0.1); /* Warna merah transparan */
+    border: 2px solid #c43b3b; /* Garis tepi merah */
+    backdrop-filter: blur(2px);
+}
+
+/* Mengatur posisi setiap sisi kubus */
+.front  { transform: translateZ(50px); }
+.back   { transform: rotateY(180deg) translateZ(50px); }
+.right  { transform: rotateY(90deg) translateZ(50px); }
+.left   { transform: rotateY(-90deg) translateZ(50px); }
+.top    { transform: rotateX(90deg) translateZ(50px); }
+.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+/* Animasi Putar Otomatis */
+@keyframes rotateCube {
+    from { transform: rotateX(0deg) rotateY(0deg); }
+    to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Atur posisi masing-masing kubus */
+.cube-pos-1 { 
+    top: 15%; left: 5%; 
+    transform: scale(0.8); /* Agak kecil */
+}
+
+.cube-pos-2 { 
+    top: 60%; left: 15%; 
+    transform: scale(1.2); /* Agak besar */
+}
+
+.cube-pos-3 { 
+    top: 30%; right: 10%; 
+    left: auto; /* Hapus left default */
+    transform: scale(0.6); /* Kecil di kejauhan */
+}
+
+/* Biar warnanya beda tipis biar nggak ngebosenin (Opsional) */
+.cube-pos-2 .face {
+    border-color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.05);
+}
+
+/* Animasi putar yang berbeda durasinya biar nggak barengan */
+.cube-pos-2 .cube { animation-duration: 15s; }
+.cube-pos-3 .cube { animation-duration: 8s; }
