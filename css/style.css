@@ -31,7 +31,7 @@ section {
     backdrop-filter: blur(10px);
     padding: 10px 40px;
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgb(255, 154, 154);
     display: flex; align-items: center; gap: 50px;
 }
 
@@ -53,9 +53,7 @@ section {
 .hero-content {
     display: flex; align-items: center; justify-content: space-between; gap: 40px;
     padding-top: 50px;
-    position: relative;
-    z-index: 2; /* LEBIH TINGGI DARI KUBUS */
-    width: 100%;
+    
 }
 .hero-text, .about-box {
     will-change: transform;
