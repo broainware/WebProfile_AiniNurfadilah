@@ -13,7 +13,7 @@ body {
 
 /* GRADIENT BACKGROUND */
 section {
-    background: radial-gradient(circle at center, #4d0000 0%, #0b0b0b 100%);
+    background: radial-gradient(circle at center, #7b0000 0%, #0b0b0b 100%);
     min-height: 100vh;
     padding: 100px 8%;
 }
@@ -31,7 +31,7 @@ section {
     backdrop-filter: blur(10px);
     padding: 10px 40px;
     border-radius: 50px;
-    border: 1px solid rgb(255, 154, 154);
+    border: 1px solid rgba(255, 154, 154, 0.753);
     display: flex; align-items: center; gap: 50px;
 }
 
@@ -53,6 +53,9 @@ section {
 .hero-content {
     display: flex; align-items: center; justify-content: space-between; gap: 40px;
     padding-top: 50px;
+    position: relative;
+    z-index: 2; /* LEBIH TINGGI DARI KUBUS */
+    width: 100%;
     
 }
 .hero-text, .about-box {
